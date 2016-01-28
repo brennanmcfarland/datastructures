@@ -1,0 +1,37 @@
+public class PhoneBook<idType>{
+
+    private ArrayList<idType> IDs;
+    private ArrayList<long> numbers;
+
+    public PhoneBook(){
+	IDs = new ArrayList<idType>();
+	numbers = new ArrayList<long>();
+    }
+    
+    //return # of person with specified ID, -1 if not found
+    public long findPerson(idtype personid){
+	for(int i=0; i<IDs.size();i++){
+	    if(IDs[i] == personid){
+		return numbers[i];
+	    }
+	}
+	return -1;
+    }
+    //store given ID and phone #, returns false if failed
+    public bool addPerson(idtype personid, long number){
+	IDs.append(personid);
+	numbers.append(number);
+	return true;
+    }
+    //deletes person with secified ID, returns false if not found
+    public bool deletePerson(idtype personid){
+	for(int i=0;i<IDs.size();i++){
+	    if(IDs[i] == personid){
+		IDs.remove(i);
+		numbers.remove(i);
+		return true;
+	    }
+	}
+	return false;
+    }
+}

@@ -1,0 +1,42 @@
+recursion
+	slightly more costly in terms of overhead/stack memory
+	can be converted to non-recursive iterative method
+	base case: sub problem that is solved directly, stops the recursion
+	3 steps to apply:
+		1. find recursion rule
+		2. find base case
+		3. find rule to combine results
+	each level is added to the stack
+	must use args that bring closer to base case
+	must ensure will terminate no matter what
+recursive binary search
+	binary search using recursion
+call tree
+	traces method calls
+	eg for fibonacci sequence:
+					fib(5)
+			fib(4)			fib(3)
+		fib(3)	fib(2)	fib(2)	fib(1)
+	fib(2) fib(1)
+	(recursive fibonacci is inefficient, calls fib(x) multiple times)
+algorithm analysis
+	different algorithms -> different complexity
+	analyze:
+		running time
+		memory space requirement
+		fault tolerance
+		# of messages between participating hosts
+O notation
+	how fast it goes to 0
+	based on gauge function
+	f(x) = O(g(x)) if lim[E->0] |f(E)/g(E)| = a, 0 < a < infinity
+	T(N) = O(f(N)) if there are positive constants c and n[0] such that
+		T(N) <= cf(N) for all N>=n[0]
+		(upper bound, ignoring coefficients)
+	T(N) = o(f(N)) if for all constants c there exists an n[0] such that
+		T(N) < cf(N) for all N > n[0]
+		(exclusive upper bound, ignoring coefficients)
+	T(N) = omega(f(N)) if ... T(N) >= cf(N) for all N >= n[0]
+		(lower bound, ignoring coefficients)
+	T(N) = theta(f(N)) iff T(N) = O(f(N)) = omega(f(N))
+		(exact, ignoring coefficients)

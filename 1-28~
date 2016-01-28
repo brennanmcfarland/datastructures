@@ -1,0 +1,34 @@
+arrays vs linked lists
+	arrays
+		compact
+		efficient random access
+		inefficient delete/insert
+		max size preallocated
+		spare room overhead
+	linked list
+		opposite
+toUpperCase() with linked list
+	pointer traverses through every element and changes to uper case
+traversing a linked list
+	common
+	make a variable trav that keeps track of position in linked list
+duplicating a singly linked list
+	take starting node, copy all elements through end, return 1st of new list
+	recursive implementation:
+		if(str == null) return null;
+		StringNode copyFirst = new StringNode(str.ch);
+		copyFirst.next = copy(str.next);
+		return copyFirst;
+general traversal support: iterators
+	iterator: an object that provides the ability to iterate over a list
+		w/o violating encapsulation
+	our iterator class will have 2 methods: char next() and boolean hasNext()
+	iterator state: instance variable nextNode keeping track of where in string
+	make iterator class a nested class inside LLString
+	allows access from iterator to the internals of associated LLString object
+	next() advances iterator and returns char
+	allows code reuse
+java support for iterators
+	built-in collection classes all support iterators
+	java's iterator classes are generic
+	

@@ -1,0 +1,88 @@
+euclid's algorithm
+	 find the greatest common divisor of 2 positive integers m and n
+	      int gcd(int m, int n)
+	      {
+		while(n != 0)
+		{
+		  int rem = m%n;
+		  m = n;
+		  n = rem;
+	       return m;
+	      }
+	  logarithmic running time, because the problem gets smaller each time,
+	  	      at least by 1/2
+	theorem: if M > N, then M mod N < M/2
+verifying analysis
+	 analysis can be complex
+	 to verify:
+	    implement the algorithm
+	    measure running time
+	 problems:
+	    constants may skew reults for small inputs
+	    need to test asymptotic behavior (large inputs)
+	    usually tests avg time
+LISTS
+
+how to represent a sequence of data
+    sequence: ordered (but not sorted) collection of items
+    	      different from a bag, which has no order
+list ADT
+     Java API list interface
+     	  create a new (empty) list
+	  get ith element
+	  add element at i
+	  remove element at i
+	  get # elements in list
+	  check if a given element is the last one
+	  etc
+array representation
+      stores elements consecutively in memory
+      keeps a variable recording the current # elements
+      advantages:
+	easy + efficient access to any item in array
+	random access: every item accessed in constant time
+	very compact
+      disadvantages:
+	need to specify initial array size or resize
+	difficult to insert/delete items at arbitrary positions
+	may have many empty positions or run out of room
+linked list representation
+      more efficent for a dynamic sequence (w/frequent inserts/deletes)
+      stores a sequence in separate nodes, each containing
+      	     a single item and
+	     a link to the next node
+	     the last node has a null link
+	     starts with a variable holding a reference to the first node, the head
+      advantages:
+	dynamic size
+	easy to insert/delete
+	     done in constant time
+      disadvantages:
+	no random access
+	   must traverse nodes to get to an item
+	memory overhead for the links
+memory management for linked lists
+     nodes don't have to be consecutive in memory
+more on references
+     a reference is also a variable whose value is the address of data
+recursion on linked lists
+     a linked list is either empty or a single node followed by a linked list
+     lends itself to recursive methods
+doubly linked list
+     each node has both a next and previous reference
+     used more often
+     traversing:
+	if index less than half of length, from left to right
+	otherwise, go from right to left
+     removing:
+	set forward pointer to the node after it, backwards pointer to the one before (and decrement size)
+	except for head node, don't allow that to be removed (or end, but that should be null)
+     inserting
+	set previous node's forward pointer to new node, vice versa with following node
+	set new node's forward and backward pointers, respectively
+	except for head node, there's no prev, and tail node, there's no next
+     other operations
+     	count occurences of an item
+	remove all occurences of an item
+	reverse the list
+	duplicate the list

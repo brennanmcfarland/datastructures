@@ -1,0 +1,4 @@
+a. 150Nlog[2]N, A has the better guarantee on running time for large values of N
+b. N^2, B has the better guarantee on running time for small values of N
+c. assuming worst case and average case follow the same general pattern, we would include coefficients since this is running time and not growth rate, so
+150(1000)log[2](1000)=1494867, (1000)^2=1000000 - program B will run faster

@@ -1,0 +1,47 @@
+big O intuition
+	example: 10N^2 + 1000 = O(N^2)
+	remember, only highest power of N counts
+	if a function is O(N^2), for example, it is also O(N^3), O(N^4), etc,
+		 because O is an upper bound, not necessarily the lowest upper bound
+how to determine relative growth rate
+	if lim[N->inf] T(N)/f(N):
+		= 0 -> T(N) - o(f(N)) and O(f(N))
+		= ... [fill in]
+		= ... [fill in]
+big-O toolbox
+	constants don't matter
+	algebraic properties:
+		T[1](N) = O(f(N)) and T[2](N) = O(g(N)) -> T[1](N)+T[2](N) = O(f(N)+g(N))
+												-> T[1](N)*T[2](N) - O(f(N)*g(N))
+		T(N) = O(f(N)) and g(x) is monotonic -> g(T(N)) = O(g(f(N))
+	dominated terms don't matter
+remember log properties
+logarithm grows slower than any polynomial
+can use log properties to evaluate/compare O between growth rates
+*****HOMEWORK***** ==> on blackboard
+algorithm analysis
+	models&assumptions
+		consider abstract, ignore details/specifics of computer/specific code
+		assume sequential process, no parallel processing
+		ignore small constant factors, eg differences among primitive instructions
+		ignore language differences
+calculating running time
+	assume each operation takes 1 unit of time
+	for a loop, multiply # operations in the loop by the # times the loop runs
+	for nested loops, start from the middle
+	important note: 1 line of code != 1 operation, multiple operations in a line
+		eg sum += i*i*i has 4 operations, 2 multipliers, an increment and assign
+		eg for(int i=1; i<=n; i++) has 1+2n, assignment at the beginning and
+			 a test and increment for each iteration??[not sure]
+general rules
+	simple statement
+		i++; i<n
+	simple loops, # iterations*cost of body
+		i=0; while(i<n){...i++...}
+	nested loops, # iterations of outer and inner loops*cost of inner loop body'
+		for(i=0;i<n;i++)
+			for(j=0;j<m;j++)
+				k++;
+	.......[fill in]
+running time & recursion
+	count the # of recursive calls and the cost of each call

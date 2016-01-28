@@ -1,0 +1,10 @@
+a. result: returns the number of empty elements in a given array
+	running time: O(N), because the # iterations increases
+		at the same rate as N
+b. result: returns the index of the first empty element in a given
+   		array, or -1 if the array is filled
+	running time: O(N), because the # iterations increases
+		at the same rate as N
+c. result: sorts the contents of a given array in increasing order
+	running time: O(N^2), N for the outside loop times N for the
+		inside loop

@@ -6,6 +6,4 @@ c. where N is odd, the algorithm breaks, indicating there is no majority element
 
 d. the problem is recursively divided up into smaller problems, so O(logN)
 
-e. we can avoid using an extra array B by testing, for each element in the array, whether it is repeated more tha N/2 times via a consecutive search through the array.
-
-f. see program
+e. we can avoid using an extra array B by 

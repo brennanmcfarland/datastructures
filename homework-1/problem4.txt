@@ -1,1 +1,2 @@
-37 < sqrt(N) < N < NlogN < N^1.5 < N^2 < N^2logN < N^3
+2/N < 37 < sqrt(N) < NloglogN < N < NlogN < NlogN^2 < Nlog^2N < N^1.5...
+... < N^2 < N^2logN < N^3 < 2^N/2 < 2^N

@@ -1,0 +1,50 @@
+stack *** will have to fill in later***
+array implementation
+  keep the stack in an array, keep the index of the top of the stack
+  restrict methods' access to top of stack
+ArrayStack Class
+  public class ArrayStack<T>{
+    private T[] items;
+    private int top;
+    private int maxSize;
+  }
+linked-list implementation
+applications-checking for delimiter(parentheses, brackets, etc) balancing
+  push open delimiters, pop close delimiters and see if it matches top open
+  end result should be an empty stack
+applications-infix to postfix conversion
+  infix = standard form
+    a+b*c+(d*e+f)*g
+  postfix = operator after operands
+    abc*+de*f+g*+
+  to operate on: push operands, when an operator is reached, pop twice and
+    operate on those, then push the result again
+  to convert:
+    if operand, print it
+    if "(", push
+    if an operator, compare to operator at top, if current operator has higher
+     priority or no other, push it, otherwise, pop and print the top, repeat
+     with the next element that is now on the top.  once the bottom of the stack
+     or left parenthesis shows up, push the current operator
+    if ")", pop and print everything till "(", then pop that
+    at the end of input pop&print everything
+queue ADT
+  special sequence in which items added at back, removed from front
+    first in first out - FIFO
+    can only access item at front
+  operations:
+    boolean insert(T item)
+    T remove()
+    T peek() - get item in front, but don't remove
+    boolean isEmpty()
+    boolean isFull()
+array implementation
+  circular array with references to front and rear
+  queue empty when front "overcomes" rear, keep a variable numSize to
+    distinguish from full
+  use mod operator for wrapping indices around the array
+    eg rear = (rear+1)%array.length
+linked list implementation
+  references to first + last node
+*****************HOMEWORK*******************
+  new assignment posted on BB, due Feb 16 11:59PM

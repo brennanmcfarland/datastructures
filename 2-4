@@ -1,0 +1,61 @@
+trees
+hierarchies
+  local directory structure
+  gov/organizational structures
+  general approach of dealing w/large-scale computer systems
+    P2P networks
+    hostnames
+    IP addresses
+    internet
+  trees represent hierarchies
+tree
+  a set of nodes, with one of them distinguished as a root
+  a set of edges (sometimes called arcs), each of which contains a pair of nodes
+  no cycles
+  each node may have an associated data item (payload)
+    key field: the field used when searching for an item
+  root node usually at top
+relationships between nodes
+  parent nodes + children nodes
+  each node is the child of at most one parent
+  nodes with the same parent are siblings
+  a node's ancestors are its parent, parent's parent, etc
+  vice versa with descendants
+  leaf node is a node without children
+  interior node is a non-leaf node (sometimes meant as non-leaf, non-root)
+a tree is a recursive data structure
+  each node is the root of a subtree
+  even a leaf node is a subtree, just a subtree of 1
+  tree algorithms lend themselves to recursion
+  an empty set of nodes is a tree
+path, depth, level, height
+  exactly one path (sequence of edges) connecting each node to the root
+  depth of a node = # edges on the path from it to the root
+  level = nodes with the same depth
+  height of a tree is the maximum depth
+binary trees
+  at most 2 children
+  recursive def: a collection of nodes that is either empty or contains a node
+    R that has a binary left subtree, whose root (if any) connects to R, and
+    a binary right subtree
+binary tree representation in java
+  nested class Node in class BinaryTree, containing int key and T data
+traversing binary tree
+  visiting all the nodes in the tree
+preorder traversal
+  visit the root, then recursively the left child,
+    then recursively the right child
+postorder traversal
+  recursively traverse the left, then right subtree, then visit the root node
+inorder traversal
+  recursively traverse the left, visit the root, then recursively traverse the
+    right
+level-order traversal
+  visit the nodes one level at a time, from top to bottom and left to right
+  aka breadth first traversal
+level-order traversal using queue
+  initialization: insert the root in the queue
+  while the queue is not empty
+    remove a node from the queue, print it, and insert its children into the
+      queue
+  

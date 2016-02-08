@@ -19,6 +19,7 @@ public class boolArrayList{
     if(listsize < i+1)
       list[listsize] = value;
     else{
+      //shift everything after the insertion point one space to the right
       for(int j=listsize-1;j>i;j--)
         list[j] = list[j-1];
       list[i] = value;
@@ -28,6 +29,7 @@ public class boolArrayList{
   //remove element i, or do nothing if DNE
   public void remove(int i){
     if!(listsize < i+1){
+      //shift everything after i one space to the left
       for(int j=i;j<listsize-1;j++)
         list[j] = list[j+1];
       listsize--;

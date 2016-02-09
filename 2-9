@@ -1,0 +1,63 @@
+binary trees & expressions
+  can represents order of operations in a binary tree
+  leaf nodes are variables/constants, interior nodes are operators
+  because the operators are binary, a node has either 2 children or none
+traversing
+  inorder gives prefix expression
+  postorder gives postfix expression
+  preoder gives functional notation
+    eg -(+(a,*(b,c)),/(d,e)) or -+a*bc/de
+binary search trees
+  all nodes in left subtree are less
+  all nodes in right subtree are greater
+  performing an inorder traversal visits the nodes in sorted order
+searching an item in a binary search tree
+implementing search using recursion
+  private Node searchTree(Node root, int key){
+    if(root == null)
+      return null;
+    else if(key == root.key)
+      return root;
+    else if(key < root.key)
+      return searchTree(root.left, key);
+    else
+      return searchTree(root.right, key);
+  }
+implementing search using iteration
+  Node trav = root;
+  while(trav != null){
+    if(key == trav.key)
+      return trav;
+    else if(key < trav.key)
+      trav = trav.left;
+    else
+      trav = trav.right;
+  }
+  return null;
+inserting into a binary search tree
+  find what will be the parent node
+  add the new node to the tree, if key is less than parent, on left, else right
+  special case: if tree empty, make new node the root of the tree
+deleting from a binary search tree
+  3 cases for deleting a node x:
+    1. x has no children
+      just set parent's reference to null
+    2. x has one child
+      take x's parent's reference to x an make it refer to x's child instead
+    3. x has two children
+      replace x with the smallest node in x's right subtree, call it y
+      y will either be a leaf node or will have one right child
+      after copying y's item into x, delete y using case 1 or 2
+efficiency of a binary search tree
+  search, insert, delete all have the same time complexity
+  best case: O(1)
+  worst case: O(h), where h is the height of the tree
+  average case: O(h)
+balaced binary tree
+  if not balanced at all, height = n-1, worst case = O(n)
+  a tree is balanced if, for each node, the node's subtrees
+    have heights that differ by at most 1
+  a large # insertions + removals can cause imbalance
+  because deleting always favors the right
+  can mitigate by randomizing whether an = value node goes on the left or right
+  but for keys with repititions doesn't support find all instances of key

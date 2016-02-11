@@ -1,0 +1,52 @@
+*******HOMEWORK********
+  written assignment 2 due one week from today
+avoiding unbalanced trees
+  randomize deletion
+  rebalance as go along
+  protect against obvious cases
+AVL trees - invented 1962
+  binary search tree that takes special measures to ensure balance
+terms
+  height: length of longest path from root to leaf node
+    eg height of a single-node tree is 0
+  height of an empty tree is -1 by convention
+  balance = right subtree height-left subtree height
+    signed difference in height
+AVL trees
+  2 criterion: binary search + balance condition
+  balance condition: balance of any node = -1,0, or 1
+  insertion that violates balance condition: rearrange tree back to balance
+    must preserve search tree property
+    must preserve time complexity, log(N)
+  any methods for insertion/deletion must incorporate a balancing mechanism
+rotations
+  maintains search tree property
+    y         x
+  x   >=y   <x  y
+<x >=x        <y  >=y
+  called a right rotation
+  left rotation also possible
+  ***will need to review this
+  only needs a couple references to change
+  if the tree is unbalanced in favor of the left, rotate right
+  if unbalanced in favor of the right, rotate left
+  always perform a rotation on the deepest subtree possible
+rotations implementation
+  in addition to normal binary tree fields, needs:
+    a reference to the parent node
+    an int to store the node's balance value
+  private void LeftRotation(Node y){
+    involves changing only references:
+      parent of y
+      parent of x
+      parent of right child of y
+      parent of left child of x
+  }
+  constant time complexity
+insertion into AVL tree
+  2 additional fields to consider:
+    parent references (null if root)
+    balance
+  begin by inserting just like with basic search tree
+  rebalance as needed
+  

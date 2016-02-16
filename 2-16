@@ -1,0 +1,84 @@
+insertion into AVL trees
+  1. insert as in binary search tree
+  2. check balance
+change in balance
+  case 1: N's balance goes from 0 to +-1
+    N's subtree still within AVL rules
+    need to check if N's ancestors violating AVL's rules
+  case 2: N's balance goes from +-1 to 0
+    no changes needed
+  case 3: goes from +-1 to +-2
+    need to rebalance the tree using rotations
+    one rotation doesn't always rebalance, need a double rotation sometimes
+      when left child of right subtree or vice versa, perform
+        right then left rotation, or vice versa
+    3a. left subtree of left child: rotate right
+    3b. right subtree of right child: rotate left
+    3c. right subtree of left child: left-right double rotation
+    3d. left subtree of right child: right-left double rotation
+    private void leftrightrotation(Node y){
+      leftrotation(y.left);
+      rightrotation(y);
+    }
+complete insertion method:
+  1. insert node
+  2. trace path back to root:
+    if ancestor's balance 0, now it's +-1
+    if ancestor's balance +-1
+      if it's now 0, stop
+      if it's now +-2, check sign to figure out what kind of rotation(s) needed
+deletion from AVL trees
+  1. remove the node
+  2. for each ancestor from X's parent, if the balance value
+    changes from +-1 to 0
+      check ancestor
+    changes from 0 to +-1
+      check ancestor?
+    changes from +-1 to +-2
+      rebalance w/ appropriate rotation(s)
+efficiency of AVL trees
+  an AVL tree containing n items has a height that is O(log[2]n)
+  search and insertion are both O(log[2]n)
+  same with path up and down
+  and deletion, except rotations which are also the same
+
+  requires traversing from root to at most leaf
+  logN descents
+  visiting each node-one comparison
+  on disk, random access is expensive
+  node smaller than memory block
+other trees
+  2-3 trees
+  splay trees
+  red-black trees
+  B-trees
+designing for disk particulars-B trees
+  5-5 tree: each node has 5 children
+  a B tree of order M is a balanced tree in which
+    each non-leaf node stores up to M-1 keys and M pointers,
+    key i represents the smallest possible key in subtree i+1 at the next level
+    data items are sotred in leaf node (L=max # items), in list
+    non-leaf nodes are just boundaries
+    each node except for root is at least half full
+      non-leaf: at least M/2 pointers
+      leaf: at least L/2 entries
+    root is either a leaf, or between 2 and M children
+  determining M and L
+    *****fill in*****
+
+insertion into B-trees
+  1. search for the key until we reach a leaf
+  2. insert the key into the list of the leaf node
+leaf split
+  what if the leaf array is full?
+  add a new node and split the old one
+  may have to create new key
+splitting an internal node
+  what if there's no room for a leaf split?
+  see picture
+deletion from B-trees: node merging
+  have a neighboring node donate when # items in leaf node drops below L/2 if
+    that doesn't cause the same problem with the neighboring node, otherwise
+    must merge nodes (which takes longer)
+efficiency of B-trees
+  often measured by # disk accesses, instead of CPU comparisons

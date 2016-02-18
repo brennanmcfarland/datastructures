@@ -1,11 +1,10 @@
-//check listNode scope correct
 public class boolLinkedList implements boolList{
 
   int listsize;
   listNode head;
   listNode tail;
 
-  //nested class for the nodes of the LL, is protection level correct?
+  //nested class for the nodes of the LL
   private class listNode{
     public listNode prev;
     public listNode next;
@@ -25,14 +24,21 @@ public class boolLinkedList implements boolList{
     listsize = 0;
   }
   //return the size of the list
-  //running time:
+  //running time: O(1)
   public int size(){
     return listsize;
   }
   //insert an element before the ith element or at the end if DNE
-  //running time:
+  //running time: O(n)
   public void insert(int i, boolean value){
     listNode temp = head;
+    //check for empty list
+    if(listsize == 0){
+      head = new listNode(null,tail,value);
+      tail = head;
+      listsize++;
+      return;
+    }
     //traverse the LL
     for(int j=0; j<i; j++){
       if(temp.next == null)
@@ -45,7 +51,7 @@ public class boolLinkedList implements boolList{
     listsize++;
   }
   //remove element i, or do nothing if DNE
-  //running time:
+  //running time: O(n)
   public void remove(int i){
     listNode temp = head;
     //traverse the LL
@@ -58,7 +64,7 @@ public class boolLinkedList implements boolList{
     temp.next.prev = temp.prev;
   }
   //return the ith element or raise exception if DNE
-  //running time:
+  //running time: O(n)
   public boolean lookup(int i){
     if(i<listsize){
       listNode temp = head;
@@ -69,15 +75,14 @@ public class boolLinkedList implements boolList{
       return temp.value;
     }
     else{
-      throw new InvalidListElementException();
+      throw new IndexOutOfBoundsException();
     }
   }
   //flip all elements to their opposite, raise exception if empty list
-  //running time:
+  //running time: O(n)
   public boolean negateAll(){
     if(listsize == 0){
-      throw new EmptyListException();
-      return false;
+      throw new IllegalArgumentException();
     }
     listNode temp = head;
     //traverse the LL, negating as we go along

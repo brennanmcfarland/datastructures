@@ -1,5 +1,3 @@
-//TODO: need to check for edge cases, ie array OOB exception
-//TODO: exception handling? am i doing it right?  should it also return?  what?
 public class boolArrayList implements boolList{
   boolean[] list;
   int listsize;
@@ -10,13 +8,16 @@ public class boolArrayList implements boolList{
     listsize = 0;
   }
   //return the size of the list
-  //running time:
+  //running time: O(1)
   public int size(){
     return listsize;
   }
   //insert an element before the ith element or at the end if DNE
-  //running time:
+  //running time: O(n)
   public void insert(int i, boolean value){
+    //check to make sure not exceeding max size
+    if(listsize == list.length)
+      throw new IndexOutOfBoundsException();
     if(listsize < i+1)
       list[listsize] = value;
     else{
@@ -28,7 +29,7 @@ public class boolArrayList implements boolList{
     listsize++;
   }
   //remove element i, or do nothing if DNE
-  //running time:
+  //running time: O(n)
   public void remove(int i){
     if(listsize >= i+1){
       //shift everything after i one space to the left
@@ -38,19 +39,18 @@ public class boolArrayList implements boolList{
     }
   }
   //return the ith element or raise exception if DNE
-  //running time:
+  //running time: O(1) (technically O(2) but what's important is that it's constant)
   public boolean lookup(int i){
     if(i<listsize)
       return list[i];
     else
-      throw new InvalidListElementException();
+      throw new IndexOutOfBoundsException();
   }
   //flip all elements to their opposite, raise exception if empty list
-  //running time:
+  //running time:O(n)
   public boolean negateAll(){
     if(listsize == 0){
-      throw new EmptyListException();
-      return false;
+      throw new IllegalArgumentException();
     }
     for(int i=0;i<listsize;i++)
       list[i] = !list[i];

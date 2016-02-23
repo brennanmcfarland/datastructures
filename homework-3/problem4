@@ -1,0 +1,32 @@
+
+PROBLEM #4:
+//count the # nodes in T
+public int nodeCount(node T){
+  int numnodes = 1;
+  if(T.left != null)
+    numnodes += nodeCount(T.left);
+  if(T.right != null)
+    numnodes += nodeCount(T.right);
+  return numnodes;
+}
+//count the # leaf nodes in T
+public int leafCount(node T){
+  int numnodes = 0;
+  if(T.left != null)
+    numnodes += leafCount(T.left);
+  if(T.right != null)
+    numnodes += leafCount(T.right);
+  else if(T.left == null)
+    return 1;
+}
+//count # non-internal nodes in T
+public int nonleafCount(node T){
+  /* since both methods are O(N) and I'm merely calling one of each, the result
+    is still O(N) since constants drop out and thus it still meets the accepted
+    standard for code efficiency, and it also exploits code reusability, thus
+    making it a better solution than writing an entirely new algorithm */
+  return nodeCount(T)-leafCount(T);
+}
+
+To arrange the nodes into a perfect binary tree is possible for n%2=1, ie all
+odd n because other than the root node, every node must be one of two children

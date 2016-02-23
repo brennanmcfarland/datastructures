@@ -1,0 +1,101 @@
+*****HOMEWORK-programming assignment 2 due Thur after spring break, posted*****
+balanced vs unbalanced
+  quick access to tree data structures often required, balanced better
+  sometimes, balance/speed not important, eg compression
+huffman encoding
+fixed length character encoding
+  maps each char to a #
+  ascii-8 bits per char
+    A-01000001
+    etc
+variable length character encoding
+  problem:fixed length wastes space
+  solution: assign shorter encodings to more frequent characters
+    E:01
+    O:100
+    S:111
+    T:00
+    TEST:000111100
+  but how do we determine the boundaries between characters?
+  solution: no character's encoding can be the prefix of another char's encoding
+    eg can't have T=00 and Q=001
+huffman encoding
+  type of variable length encoding tied to frequencies in a given doc
+  uses a binary tree:
+    to determine encoding of each char
+    to decode an encoded file
+  leaf nodes are characters
+  left branches are 0, right branches are 1
+  not a balanced tree, otherwise space would be same for each char
+  see pic
+building a huffman tree
+  begin by reading through text to determine frequencies
+  create an ordered list of nodes that contain char-frequency pairs for each
+    char that appears in text
+  remove+"merge" the nodes with the 2 lowest frequencies, forming a new node
+    that is their parent
+  frequency of parent = sum of frequencies of children
+  parent does not contain a char
+  left child=lowest frequency, right child=next lowest
+  merge the two nodes remaining with lowest frequencies, and so on
+  greedy solution: **fill in
+heaps+priority queues
+priority queue
+  a collection of items, each with an associated priority (as a #)
+  stored in a tree
+structure types of binary trees
+  full binary tree
+    every node has exactly 2 or 0 children
+  perfect binary tree
+    all leaf nodes are at the same depth
+    possible to be balanced but not perfect, eg if even # nodes
+  complete binary tree
+    balanced, and at the same level, filled L to R
+array representation of a complete tree
+  simple array representation
+  stored in the array in the order in which they would be visited by a level-
+    order traversal (like binary heap)
+navigating a complete binary tree
+  root node is in a[0]
+  given a node a[i]:
+    its left child is a[2*i+1]
+    its right child is a[2*i+2]
+    its parent is a[(i-1)/2],i!=0
+heaps for priority queues
+  a complete binary tree - heap - binary heap
+    (often used interchangeably with heap)
+  largest value at the root
+  smallest value can be in any leaf node, no guarantee about which one
+  node's key >= keys of children
+  max-at-top heap
+  min-at-top heap the same, except the smallest value is at the top
+heap ADT - generics
+  want to store data items of different types
+  being able to derive a priority from the object better than just giving a key
+  but for a generic heap, comparing elements is difficult
+generic heaps - comparable objects
+  to compare objects in java, we need to use a method called compareTo()
+  many built-in classes have a version of this method, eg wrapper classes
+  ***fill in***
+removing an item (the highest priority)
+  method:
+    make a copy of the largest item
+    move the last item in the heap to the root
+    "sift down" the new root item until it is >= its children or it's a leaf
+    return the largest item
+  sift method: items filtered such that small ones will fall
+heapify - sifting down
+  to sift down the item who's key is x
+    compare x with the larger of the item's children, y
+    if x<y, swap x and y and repeat
+  we don't have to put the sifted item in place of the child, can wait until
+    the end, when finding where it should finally go
+inserting an item
+  put the item in the next available slot
+  "sift up" the new item until it is <= its parent or becomes the root
+  basically just the opposite of sifting up for a delete
+running time of insert/remove
+  sifting
+    h=log[2]N
+    running time O(log[2]N)
+    but search is inefficient due to limited ordering

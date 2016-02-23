@@ -1,0 +1,11 @@
+
+PROBLEM #5:
+//assuming that a node of = value would go to the right
+public boolean hasOrderProp(TreeNode rootNode){
+  if (rootNode.left exists AND rootNode.left.value greater or = rootNode.value)
+    OR (rootNode.right exists AND rootNode.right.value lessthn rootNode.value)
+    return false;
+  else
+    if hasOrderProp(rootNode.left) AND hasOrderProp(rootNode.right)
+      return true;
+}

@@ -1,0 +1,44 @@
+
+PROBLEM #3:
+public interface intStack{
+  public void push(int i);
+  public int pop();
+  public int peek();
+  public boolean isEmpty();
+  public boolean isFull();
+}
+
+public class intStackDemo{
+  public static void main(String[] args){
+    string expression = "37*2+";
+    System.out.println("The postfix expression evaluated is
+      +postfixExpr(expression));
+  }
+  //evaluate the postfix expression
+  public static int postfixExpr(String expr){
+    int operand1,
+        operand2;
+    MyIntStack  stack = new MyIntStack();
+    //for every character
+    for(int i=0;i<expr.length;i++){
+      switch(expr.charAt(i)){
+      //if it's an operand, evaluate it on the last 2 values of the stack
+      case "+":
+        stack.push(stack.pop()+stack.pop());
+        break;
+      case "-":
+        stack.push(stack.pop()-stack.pop());
+        break;
+      case "*":
+        stack.push(stack.pop()*stack.pop());
+        break;
+      case "/":
+        stack.push(stack.pop()/stack.pop());
+        break;
+      default:
+        //if it's a #, push to the stack
+        stack.push(expr.charAt(i)(int));
+      }
+    }
+  }
+}

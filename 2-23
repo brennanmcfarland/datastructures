@@ -1,0 +1,87 @@
+generic heaps
+  items[]
+  maxitems
+  numitems
+removing the top item
+  make a copy of the largest item
+  move the last item in the heap to the root
+  sift down new root item until >= its children or it's a leaf
+  return the largest item
+"heapify" - sifting down
+  compare item x with the larger of the item's children, y
+  if x<y, swap them and repeat
+inserting an item
+  put the item in the next available slot (grow array if needed)
+  "sift up" the new item until it is <= its parent or becomes the root
+running time of insert/remove
+  sifting is the key cost
+  height h = log[2]N, worst case
+  running time: O(log[2]N)
+  both insert and remove are fast
+  but searching inefficient
+tournament trees
+  player with higher strength value advances up tree
+  but limited ordering information, can only tell who is 1st, not 2nd or 3rd
+building a heap - naive algorithm
+  could just insert each item 1 by 1 from an array
+  running time O(NlogN)
+  inefficient, not the best way to do it
+building a heap - efficient algorithm
+  build the heap in place
+  1.position = (numitems-2)/2
+  2.sift down item at that position
+  3.decrement position by 1
+  4.repeat until position is 0
+  basically just take the array and instead of adding to a new heap, sift each
+    element to make it a heap
+  running time: O(N)
+  running time not tight
+  for a perfect binary tree of height h,
+    running time is O(N)
+  a complete binary tree is not perfect, but # nodes is N[actual], running
+    time less than for perfect, O(N[actual])
+merging two heaps
+  append one heap to the end of the other, then sift, like building a heap
+  O(N), not super efficient, but it's the best we can do with this type of
+    data structure
+summary of running time for binary heap operations:
+  findMax:            O(1)
+  removeMax:          O(logN)
+  insert:             O(logN)
+  delete:             O(logN)
+  update() priority:  O(logN)
+  buildheap():        O(N)
+  merge():            O(N)
+average running time different for insertion
+  because it almost never goes all the way up to the top of the heap
+****NOTE: link to animations to help visualize data structures posted on BB****
+applications of heaps
+heap-sort
+  repeatedly finds the largest remaining item from a heap and puts it in place
+  O(N) to turn into heap
+  O(logN) to remove largest remaining item
+  O(NlogN) overall
+  efficient
+  1. build the heap
+  2. remove the largest item from the heap and put it at the end of the array
+  3. decrement the index of the end of the heap
+  4. repeat until the heap is size 1
+  the advantage is that it doesn't require creating a whole new array
+the selection problem
+  given an array of N items and an integer k (1<=k<=N), find out the kth largest
+    item or k largest items in the list
+  solve by building it into a heap, then removing the max until we get to k
+  running time O(N+klogN) -> O(klogN)
+update an item
+  1. replace the old item with the new one
+  2. compare new item to the old one
+    if it's larger, sift up
+    if it's smaller, sift down
+  running time: O(logN)
+delete an arbitrary item
+  1. replace the item with the last item in the heap
+  2. compare to determine if sifting up or down
+*****MIDTERM*****
+  March 3
+  can bring in one regular sheet of paper with notes, otherwise closed book
+  stuff from up to today will be on exam

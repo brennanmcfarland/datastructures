@@ -1,0 +1,89 @@
+hashing
+  efficiency-can we do better than logarithmic complexity?
+  hash tables/hashing allows searching, insertion, etc in O(1)
+keys+indices
+  key: a (hopefully) unique attribute of an object
+  index: position of object in array
+  unsorted arrays - indices independent of keys, dumb search
+  sorted arrays - indices related to keys, smart search
+  hashing - treat the key as an index, searching is simple, constant order
+hash functions
+  often, key attribute has semantic meaning that cannot be arbitrarily assigned
+  may end up with matching keys
+  different keys in different situations
+  hash function: map keys into array indices
+    domain: the keys, range: integers in [0,array size)
+  hash: to chop into small pieces
+hash tables
+  collisions: when multiple keys map to the same index, not good
+  resulting data structure from mapping called a hash table
+example: string as key
+  hash function: key = byte sum of all characters mod table-size
+  collisions: matching mods AND rearraning the same letters
+requirements for good hash functions
+  full table size utilization
+  uniform key mapping throughout the table
+    utilizing known key distribution
+    making hash function "random", distribution of keys indpended of
+      distribution of indices they map to
+      use the entire key to compute the hash value
+better example for string as key
+  use weighted sum of the character codes
+  h[b] = (a[0]b^(n-1)+...) where b=constant, a=encoding of ith character
+  Java uses this hash function with b=31 in the hashCode() method of the string
+    class
+  why 31?  a prime that is a power of 2 plus 1
+  same letters rearranged yields different hash value
+  but can't use a small table like 31
+  problem: calculating hash for long words takes a lot of calculation
+  better way: Horner's method: a[0]b^(n-1)+... = (a[0]b+a[1])b+...+a[n-2])b+...
+  swamping: when adding a very large # to a very small one, the small one goes
+    away ***clarify***
+  for b=31, more efficient ways to "multiply by 31"
+    n << i shifts the binary representation of n left by i places
+    n << i = n*2^i
+    n*31 = n*(32-1) = (n << 5)-n
+    n >> i shifts the binary representation of n right by i places
+handling collisions with chaining
+  if multiple items are assigned the same hash code, "chain" them together,
+    each position in the hash table serves as a bucket able to store nultiple
+    data items
+  implementation: LL (costs overhead) or array (wastes memory+overflow)
+  but overall, adds minimal overhead, still about O(1) on average
+operations with chaining
+  search
+    traverse corresponding LL or array
+    # hash table slots should be of same order as total # items to guarantee
+      short lists
+    load factor (lambda): ratio of # items to # of hash table slots
+  insertion
+    insertion in a LL or array
+    new list node must be allocated/array size must be dynamically adjusted
+  removal
+    removal in LL/array
+    garbage-collect old node/resize array
+handling collisions with open addressing
+  when position assigned by the hash function is occupied, find another open
+    position - called probing
+linear probing
+  probe h(key),h(key+1),h(key+2), etc
+  advantage: if there's an open position, linear probing will find it
+  disadvantage: clusters of occupied positions develop, search + insert times
+    get increasingly linear as subsequent probe times increase
+quadratic probing
+  probe h(key),h(key+1),h(key+4),h(key+9), etc
+  advantage: reduces clustering, but still "secondary" clustering
+  disadvantage: may fail to find an existing open position
+double hashing
+  use 2 hash functions:
+    h1 computes hash code
+    h2 computes increment for probing
+  example: h1=previos function h, h2 = # characters in string
+removing items with open addressing
+  if just deleted, will no longer come back in searches, blank spot along probe
+  when we delete, we need to leave a special value in that position to indicate
+    that an item was removed previously stored there
+  3 types of positions: occupied, empty, removed
+  when searching for a key, stop probing when encounter an empty position, but
+    not when encounter a removed position
+  can insert items in either empty or removed positions

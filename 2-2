@@ -1,4 +1,14 @@
-stack *** will have to fill in later***
+stack
+  special sequence in which
+    items can be added + removed only at one end, the top
+    you can only access the item that is currently at the top
+  operations:
+    boolean push(ItemType i)
+    ItemType pop()
+    ItemType peek()
+    boolean isEmpty()
+    boolean isFull()
+  no way to go to an arbitrary position because of data encapsulation
 array implementation
   keep the stack in an array, keep the index of the top of the stack
   restrict methods' access to top of stack

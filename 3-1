@@ -1,0 +1,84 @@
+implementation of hash tables
+  public class HashTable{
+    private class Entry{
+      private String key;
+      private String etymology;
+      private boolean removed;
+    }
+    private Entry[] table;
+    private int tablesize;
+  }
+  for an empty position, table[i] will be null
+  an open position is either null or has removed as true
+finding an open position
+  using double hashing
+    int i = h1(key)
+    int j = h2(key)
+    while(table[i] != null && table[i].removed == false)
+      i = (i+j)%tablesize;
+    return i;
+  however, doesn't always terminate
+  can stop probing after checking # positions in table because probe sequence
+    will just repeat after that point
+  count # of iterations until it's > table size
+finding the position of a key
+  int i = h1(key)
+  int j = h2(key)
+  int iterations = 0
+  while(table[i] != null)
+  {
+    if(table[i].removed == false && table[i].key.equals(key))
+      return i
+    etc
+  }
+search method
+remove method
+insertion
+  int i = probe(key)
+  if(i == -1)
+    throw new RuntimeException("HashTable full");
+  else
+    etc
+hash table performance may degrade
+  as more positions marked as removed, search must continue, increasing time
+  when most entries occupied, insertion may not be able to find open position
+    quickly
+  affects what's called the load factor, lambda
+rehashing
+  create another hash table, and move every entry to the new table
+    good for fixing high running time but low load factor, speeds search
+  create a new hash table of roughly doubled size, and move entries to the new
+    table, good for fixing high load factor, speeds insertion
+  not exactly double, the first prime that's over 2x the original size
+efficiency of hash tables
+  best case, search and insertion O(1)
+  worst case, O(n)
+  with a good choice of hash function and table size, time complexity generally
+    better than O(logn) and approaches O(1)
+  open addressing: try to keep load factor < 1/2
+  separate chaining: 1
+  bigger tables = faster, but less memory efficient
+limitations of hash tables
+  can be hard to come up with good hash function
+  not great for searching
+external hashing
+  what if too large to be in main memory?
+  can use disk addresses instead of memory addresses
+extendable hashing
+  choose a hash function with a large range
+  use i senior bits as an offset into a table of bucket addresses
+  store entries in the buckets
+    entries in the same bucket share common prefix in hash values
+    searching for key K
+      compute h(K)
+      take i senior bits
+      look up the directory using i-bit offset
+      follow the bucket pointer
+insertion acts similar to B-trees, with directory+leaf splits
+  may need to split multiple times if elements still indistinguishable
+deletions also similar to B-trees
+extendible hash positives+negative
+  constant-time directory acccess
+  directory is space-efficient (just bucket pointers)
+  but directory must fit into memory
+****EXAM - will probably just need to do Java-like pseudocode

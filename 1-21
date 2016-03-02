@@ -6,8 +6,8 @@ big O intuition
 how to determine relative growth rate
 	if lim[N->inf] T(N)/f(N):
 		= 0 -> T(N) - o(f(N)) and O(f(N))
-		= ... [fill in]
-		= ... [fill in]
+		= c => 0: T(N) = O(f(N))
+		= inf=> f(N) = o(T(N))
 big-O toolbox
 	constants don't matter
 	algebraic properties:
@@ -42,6 +42,7 @@ general rules
 		for(i=0;i<n;i++)
 			for(j=0;j<m;j++)
 				k++;
-	.......[fill in]
+	if-else
+		count more expensive branch only
 running time & recursion
 	count the # of recursive calls and the cost of each call

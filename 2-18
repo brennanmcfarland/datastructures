@@ -38,7 +38,7 @@ building a huffman tree
   parent does not contain a char
   left child=lowest frequency, right child=next lowest
   merge the two nodes remaining with lowest frequencies, and so on
-  greedy solution: **fill in
+  greedy solution: finds currently best solution in each step
 heaps+priority queues
 priority queue
   a collection of items, each with an associated priority (as a #)
@@ -76,7 +76,7 @@ heap ADT - generics
 generic heaps - comparable objects
   to compare objects in java, we need to use a method called compareTo()
   many built-in classes have a version of this method, eg wrapper classes
-  ***fill in***
+  compareTo() method compares objects, returns - if less, + if greater
 removing an item (the highest priority)
   method:
     make a copy of the largest item

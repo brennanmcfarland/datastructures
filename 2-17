@@ -1,0 +1,39 @@
+method 4: bubble sort
+  swap adjacent elements if out of order
+  implementation
+    inner loop performs a single pass
+    outer loop governs # passes and terminal position of each pass
+  running time analysis
+    n-k comparisons, so C(n) = O(n^2)
+    moves: worst case reverse order O(n^2), best case already sorted, still O(n^2)
+    so running time complexity O(n^2)
+method 5: quick sort
+  to bubble sort what shell sort is to insertion sort
+  divide-and-conquer - rearrange into 2 sub-arrays such that any left element
+    is less than any right element
+  then sort both sub-arrays, applying recursion
+  partitioning the array
+    pivot - left subarray is all values <= pivot, vice versa for right
+    maintain indices i and j starting them just beyond array bounds
+    find out of place elements + swap, incrementing i and decrementing j
+    until i and j cross or meet
+  implementation
+    if indices cross or meet, return
+    partition
+    check for base case
+    call recursively on L and r subarrays
+    partition
+      set the pivot as the middle of the array
+      advance indices and swap if needed
+  choosing pivot values for partitioning
+    first or last element - bad, can lead to worst-case if nearly sorted
+    middle element - good if nearly sorted
+    random element - random performance
+    median of three elements: decreases probability of bad pivot, better
+  running time analysis
+    depends on partition
+    best case: partitioning always divides array in half, C(n)=M(n)= running
+      time = O(nlogn)
+    worst case: pivot always smallest or largest element, C(n)=M(n)= running
+      time = O(n^2)
+    average case harder to analyze, C(n) still O(nlogn)

@@ -64,7 +64,8 @@ designing for disk particulars-B trees
       leaf: at least L/2 entries
     root is either a leaf, or between 2 and M children
   determining M and L
-    *****fill in*****
+    (M-1)*sizeof(key)+M*sizeof(pointer) <= block size
+    L*sizeof(item) <= block size
 
 insertion into B-trees
   1. search for the key until we reach a leaf

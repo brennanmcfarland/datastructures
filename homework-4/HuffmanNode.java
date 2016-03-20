@@ -1,3 +1,5 @@
+/*a node in the huffman tree, with an associated character and frequency along
+with references to its two children if they exist*/
 public class HuffmanNode implements Comparable<HuffmanNode>{
 
   public HuffmanNode left;
@@ -12,9 +14,7 @@ public class HuffmanNode implements Comparable<HuffmanNode>{
     left = null;
     right = null;
   }
-  public char hello(){
-    return 'a';
-  }
+
   //returns the character represented
   public Character getChar(){
     return inChar;

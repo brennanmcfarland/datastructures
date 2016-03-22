@@ -1,0 +1,30 @@
+method 6: merge sort
+  divide-conquer
+    divide: split array in half into 2 subarrays
+    conquer: apply merge-sort recursively to subarrays until length = 1
+    combine: merge sorted subarrays
+  unlike other algorithms, requires significant additional memory
+    requires an additional temporary array the same size as the original
+    space for merging 2 sorted arrays into a single sorted array
+  merging sorted
+    3 indices, 1 for each merging array and the new one they merge in to
+    repeatedly
+      compare A[i] and B[j]
+      copy the smaller one into C[k] and increment the copied array's index
+      increment k
+    exception: if one index gets to the end, can skip comparisons and just
+      copy the rest of the other array
+  but creating a lot of arrays wastes a lot of space in memory
+  so instead do all splitting in a temporary array of the same length as the
+    original array, copying the result back into the original array
+  base case, instead of array of length 1, is if start = end
+  running time analysis
+    merging halves of an array of size n requires 2n moves
+    M(n)=nlogn, C(n)=nlogn
+merge-sort vs quick-sort
+  best case: partitioning always divides the array in half, 1.5nlogn
+  (heap sort also nlogn)
+  quick sort uses less memory
+  for quick sort, worst case does not appear often, average case is closer
+    to best case, but important to choose good pivots
+  for merge sort, average case is close to worst-case, so more stable

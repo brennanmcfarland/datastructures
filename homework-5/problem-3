@@ -1,0 +1,30 @@
+Assume we use a heap to implement a priority queue: we insert elements into the queue and remove
+elements in the order of their priority (max priority first).  Assume we want to ensure that we remove
+elements in the FIFO order within
+a given priority.  In other words, for any two elements with the
+same priority, the element that was inserted first will be removed first.   The methods involved in the
+heap insertion and removal are “void insert(T item)”, “T removeMax()”, “void siftUp(int
+ i)”, and
+“void siftDown(int i)”.  Write these methods to support the above functionality.
+
+void insert(T item){
+  items[numitems] = item;
+  numitems++;
+  siftUp(numitems-1);
+}
+T removeMax(){
+  T toRemove = items[0];
+  items[0] = items[numitems-1];
+  siftDown(0);
+}
+void siftUp(int i){
+  T toSift = items[i];
+  int parent = i;
+  int child = i*2+1;
+  while(child < numItems){
+  
+  }
+}
+void siftDown(int i){
+
+}

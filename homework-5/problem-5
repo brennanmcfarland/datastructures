@@ -1,0 +1,70 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+//question: are we supposed to implement the code to read the dictionaries
+//and input that into a hash table, or do we assume we already have it?
+
+public class SpellChecker{
+
+  public void SpellCheck(){
+    try{
+      BufferedReader reader = new BufferedReader(new FileReader(inputFileName));
+      String line;
+      int linenum = 1;
+      String[] words;
+      ArrayList<String> mistake; //for each mistake word, holds the word and corrections
+      //reads line by line
+      while((line = reader.read()) != null){
+        line = line.replaceAll("[^A-Za-z0-9]", " "); //eliminates punctuation
+        line = line.toLowerCase(); //makes the spellcheck case-insensitive
+        words = line.split(" "); //split the string into words divided by spaces
+        //for every word, print out the mistake, line num and possible corrections
+        for(int i=0; i< words.length; i++){
+          mistake = checkWord(words[i]);
+          System.out.println("Line " + linenum + ": " + mistake.get(0));
+          for(int j=1; j<mistake.size(); j++){
+            System.out.println("\t" + mistake.get(j) + "?");
+          }
+        }
+        linenum++;
+      }
+      reader.close();
+    }
+    //will return an error message in the calling method if something goes wrong
+    //with reading the file
+    catch(IOException exception){
+      return null;
+    }
+  }
+  //key is weighted sum of all chars' byte representations in string
+  public ArrayList<String> checkWord(String word){
+    ArrayList<String> mistake = new ArrayList<String>();
+    //if the spelling does not match any in the dictionary
+    if(findKey(word) == -1){
+      //add the misspelled word to the list
+      mistake.add(word)
+    }
+    //add any word the same as word, but with one extra character, to mistake
+    //adds the unicode value for every letter in the english language
+    //note: other languages not supported because they would need a different
+    //dictionary anyway
+    for(int i=97; i<=132; i++){
+      //if an instance of the modified word exists, add it to the list
+      if(findKey(word+(char)i) != -1)
+        mistake.add(word+(char)i);
+    }
+    //add any word the same as word, but with one less character
+    if(findKey(word.substring(0,word.length()-1)) != -1)
+      mistake.add(word.substring(0,word.length()-1));
+    //add any word the same as word, but with a pair of adjacent characters exchanged
+    for(int i=0; i<word.length()-1; i++){
+      if(findKey(word.substring(0,i)+word.substring(i+1,i+2)+word.substring(i,i+1)
+      +word.substring(i+2)) != 0)
+        mistake.add(word.substring(0,i)+word.substring(i+1,i+2)+word.substring(i,i+1)
+        +word.substring(i+2));
+    }
+  }
+}

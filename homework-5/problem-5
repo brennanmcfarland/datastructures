@@ -17,7 +17,7 @@ public class SpellChecker{
       String[] words;
       ArrayList<String> mistake; //for each mistake word, holds the word and corrections
       //reads line by line
-      while((line = reader.read()) != null){
+      while((line = reader.readLine()) != null){
         line = line.replaceAll("[^A-Za-z0-9]", " "); //eliminates punctuation
         line = line.toLowerCase(); //makes the spellcheck case-insensitive
         words = line.split(" "); //split the string into words divided by spaces

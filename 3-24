@@ -1,0 +1,61 @@
+sorting methods so far
+  NAME:     BEST CASE:  WORST CASE:  AVERAGE CASE:  EXTRA SPACE:
+  selection O(n^2)      O(n^2)       O(n^2)         O(1)
+  bubble    O(n^2)      O(n^2)       O(n^2)         O(1)
+  insertion O(n)        O(n^2)       O(n^2)         O(1)
+  shell     O(nlogn)    O(n^1.5)     O(n^1.5)*      O(1)
+  quick     O(nlogn)    O(n^2)       O(nlogn)       O(logn)(avg),O(n)(worst)
+  merge     O(nlogn)    O(nlogn)     O(nlogn)       O(n)
+  heap      O(nlogn)    O(nlogn)     O(nlogn)       O(1)
+    *can be O(n^1.25)
+after several iterations, the array will be salted
+selection problem revisited
+  finding the kth largest element
+  can use heap to achieve reasonable running time of O(N+klogN)
+  build a max-on-top heap, then removemax k times and return last result
+quick sort for the selection problem
+  can solve more efficiently, O(N) time
+  partition into left and right subarrays
+  if k<=right.length, find kth largest element in right recursively
+  if k>right.length, find the k-right.lengthth largest in left recursively
+  either way, only one recursive call
+method 7: bucket sort
+  assumption: integer keys in the range [0,M]
+  basic idea:
+    1. create M linked lists (buckets), one for each possible key
+    2. add each input *********fill in************
+  running time: O(M+N), with N=size of original array, M=number of buckets
+  hash tables also uses buckets
+  keys of non-integer types
+    assumption: input is N floating numbers (scaled) in [0,1]
+    basic idea:
+      create M linked lists (buckets) to divide interval [0,1] into subintervals
+        of size 1/M
+      add each input element to appropriate bucket and sort the bucket with
+        insertion sort
+    choose M=O(N)
+    uniform input distribution -> expected bucket size is O(1)
+      therefore expected total time is O(N): O(N) to put elements into buckets
+        and O(N) to move them back into the array
+    with uniform key distribution, bucket sort has O(N) = o(NlogN) running time
+    but sensitive to the key distribution in the range
+    pays with space for time
+    pays with worst case for average running time
+external sorting
+  how to sort huge amounts of data?
+  objectives: reduce disk read/write cost, then CPU time
+two-way external merge sort
+  for the first pass, read a page, sort it, and write it back to the disk
+    can use any internal sorting method
+  then for consecutive passes merge pairs of runs into runs twice as long
+    requires 3 buffers
+  N pages in the file
+  in each pass we read and write each page in file, 2N page io operations
+  # passes = log[2](N)+1
+  so total cost in # page ios is 2N(log[2](N)+1)
+multi-way external merge sort
+  # of passes = 1+(log[B-1](N)), where B is # buffer passes
+  cost in # page ios = 2N*# passes
+merging details
+  usually B is large, given that modern computers have lots of RAM, thousands+
+  how to find smallest key among ****fill in*********

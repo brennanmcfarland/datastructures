@@ -1,6 +1,11 @@
 import java.io.*;
 
 public class CountWords{
+
+  public static void main(String[] args){
+    System.out.println(wordCount(args[0],args[1]));
+  }
+
   //
   public static String wordCount(String input_file, String output_file){
     try{
@@ -17,20 +22,18 @@ public class CountWords{
         line = line.replaceAll("[^A-Za-z0-9]", " "); //eliminates punctuation
         line = line.toLowerCase(); //makes the spellcheck case-insensitive
         words = line.split(" "); //split the string into words divided by spaces
-        //for each word, increment occurences or create a new hash element if null
+        //for each word occurence, insert it into the hash table
         for(int i=0; i<words.length; i++){
-          temp = table.search(words[i]);
-          if(temp == null)
             table.insert(words[i]);
-          else
-            temp.addOccurence();
         }
       }
       reader.close();
-      //for every index in the hash table that's full, write and print it out
-      for(int i=0; i<table.size(); i++){
-        if((temp = table.getAtIndex(i)) != null)
-          writer.write(temp.toString());
+      //get the string[] representation of the hash table and write it string by string
+      //now we're using words to hold the string[] representation of the hash table
+      //to save memory
+      words = table.toString();
+      for(int i=0; i<words.length; i++){
+        writer.write(words[i]);
       }
       writer.close();
     }
@@ -38,7 +41,7 @@ public class CountWords{
     catch(IOException exception){
       return "Error reading/writing files.";
     }
-    return ("OK; Total words: " + x + ", Hash table size: " + y +
-      ", Average length of collision lists: " + z);
+    return ("OK; Total words: " + table.size() + ", Hash table size: " + table.capacity()
+     + ", Average length of collision lists: " + table.getAvgListSize());
   }
 }

@@ -1,0 +1,52 @@
+************EXAM the Tuesday after next*****************
+ *about half the length of the 1st one, less to cover*
+graphs
+  a set of vertices/nodes connected by edges/arcs
+  weighted graph: each edge associated with a cost
+examples of graphs
+  example: a highway map
+    vertices represent cities, edges represent highways
+  example: the internet
+  example: the power grid
+  example: social networks
+    people = nodes, friends = undirected edges, following = directed edges
+    degree of separation = shortest paths
+terminology
+  adjacent: connected by a single edge
+  neighbors: all vertices adjacent to a particular vertex
+  path: sequence of edges that connects two vertices
+  connected graph: a path between any two vertices
+  complete graph: an edge between every pair of vertices
+  degree:
+    in degree: # edges going to the vertex
+    out degree: # edges going from the vertex
+  distance/hop-distance/path length: # of edges to get from one vertex to other
+  DAG - directed acyclic graph: no closed loops, no path to get back to start
+    composed of distinct edges
+directed vs undirected
+  directed graph: a direction associated with each edge
+    edges often represented as ordered pairs like so: (start vertex, end vertex)
+  a path in a directed graph is a sequence of edges in which the end vertex of
+    edge i must be the same as the start vertex of edge i+1
+trees vs graphs
+  a tree is a special type of connected, undirected, acyclic graph
+  usually one node is considered the root ot the tree, but not required by
+    graph theory
+spanning trees
+  a subset of a connected graph that contains:
+    all of the N vertices
+    a subset of the graph's edges that forms a tree (contains N-1 edges)
+graph representation - matrix
+  adjacency matrix: a 2d array used to represent the edges and associated costs
+  edge[r][c] = cost of the link from vertex r to vertex c
+  uses a special value if there's no direct link from r to c
+  good representation if the graph is dense: most nodes are connected, but it
+    wastes memory if th egraph is sparse: has few edges per vertex
+graph representation - lists
+  adjacency list: a list (either an array or a linked list) of linked lists that
+    is used to represent edges and any associated costs
+    each list element represents a node, holding a list of connected edges+costs
+  good representation if the graph is sparse, but inefficient if the graph is
+    dense because of linked lists
+alternative representation
+  use references instead of indices

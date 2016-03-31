@@ -20,12 +20,14 @@ quick sort for the selection problem
   if k>right.length, find the k-right.lengthth largest in left recursively
   either way, only one recursive call
 method 7: bucket sort
-  assumption: integer keys in the range [0,M]
+  assumption: integer keys in the range [0,M)
   basic idea:
     1. create M linked lists (buckets), one for each possible key
-    2. add each input *********fill in************
+    2. add each input element to the appropriate bucket
+    3. concatenate the buckets
   running time: O(M+N), with N=size of original array, M=number of buckets
-  hash tables also uses buckets
+  for duplicates, use same methods as hash tables, separate chaining, etc
+  hash tables also uses buckets, same process
   keys of non-integer types
     assumption: input is N floating numbers (scaled) in [0,1]
     basic idea:
@@ -47,6 +49,7 @@ external sorting
 two-way external merge sort
   for the first pass, read a page, sort it, and write it back to the disk
     can use any internal sorting method
+  can take any 2 to merge, but usually best to choose smallest (least elements)
   then for consecutive passes merge pairs of runs into runs twice as long
     requires 3 buffers
   N pages in the file

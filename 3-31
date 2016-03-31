@@ -1,0 +1,29 @@
+traversing graphs
+  will consider 2 types:
+    depth first: proceed as far as possible along a given path before hitting a
+      previously visited node and going along the next path
+    breadth-first: visit all a vertices' neighbors, then all unvisited vertices
+      2 edges away, then all unvisited vertices 3 edges away, etc
+  note: both only cover connected graphs
+depth-first traversal
+  visit a vertex, then make recursive calls on all its yet-to-be-visited
+    neighbors
+  for each vertex, use a boolean to keep track of if visited, and a reference
+    to the parent/previously visited vertex (for record of where you went)
+depth-first spanning trees
+  keeps track of path taken in case the graph has to backtrace
+an application: checking for cycles
+  when doing depth first, if encounter a visited vertex, a cycle is found
+breadth-first traversal
+  use a queue, analogous to level-first traversal of a tree
+breadth-first spanning trees
+  same as depth-first spanning trees, but for breadth-first search instead,
+    keeps track of traversal path lengths
+running time of graph traversal
+  V: # vertices in graph
+  E: # edges in graph
+  traversal requires O(V+E) steps
+    visit each vertex once
+    traverse each vertex's adjacency list at most once
+    for a dense graph, E-> V^2, so worst case bound is O(V^2)
+    for a sparse graph, O(V+E) << O(V^2)

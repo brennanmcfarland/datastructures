@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class HashTable{
-  ArrayList<Item><String>[] table;
-  int size(); //the # entries in the hash table, not the capacity in slots
+  ArrayList<Item>[] table;
+  int size; //the # entries in the hash table, not the capacity in slots
 
   //
   public HashTable(){
-    table = new ArrayList<Item><String>[64]; //64 is the default capacity
+    table = (ArrayList<Item>[])new ArrayList[64]; //64 is the default capacity
+    for(int i=0; i<table.length; i++)
+      table[i] = new ArrayList<Item>();
     size = 0;
   }
 
@@ -21,17 +23,17 @@ public class HashTable{
   }
 
   //formats the entries in the hash table to a string array, each element is a hash element
-  public String[] toString(){
+  public String[] toStringArray(){
     //the size is an array, more efficient, size is calculated to fit the hash
-    String[] tablestrings = new String[size*getAvgListSize()];
+    String[] tablestrings = new String[size*(getAvgListSize()+1)];
     //for each hash slot, check if occupied and if so copy the list to string array
     //each list becomes a string in tablestrings[]
     for(int i=0; i<size; i++){
       tablestrings[i] = "";
-      if(table[i] != null)
-        for(int j=0;j<table[i].size();j++){
-          tablestrings[i] += table[i].get(i);
-        }
+      for(int j=0;j<table[i].size();j++){
+        System.out.println(table[i].get(j).toString());
+        tablestrings[i] += table[i].get(j).toString();
+      }
     }
     return tablestrings;
   }
@@ -52,19 +54,26 @@ public class HashTable{
         return;
       }
     }
-      table[hashCode%table.length].add(new Item(key));
-      size++;
+    table[hashCode%table.length].add(new Item(key));
+    size++;
+    System.out.println("Just inserted " + key);
+    toStringArray();
   }
 
   //double the capacity of the hash table when it is full
   private void growTable(){
-    ArrayList<Item><String>[] oldtable = table;
-    table = System.arraycopy(table,0,new List<Item><String>[table.length*2],0,table.length);
+    ArrayList<Item>[] oldtable = table;
+    //table = (ArrayList<Item>[])new ArrayList[64]; //64 is the default capacity
+    //table = System.arraycopy(table,0,new ArrayList[table.length*2],0,table.length);
+    table = (ArrayList<Item>[])new ArrayList[table.length*2];
+    //for(int i=0; i<oldtable.length; i++)
+    //  table[i] = oldtable[i];
+    //table = System.arraycopy(table,0,((ArrayList<Item>[])new ArrayList<Item>[table.length*2]),0,table.length);
     //need to rehash the table to account for the new hash function/table size
     for(int i=0; i<oldtable.length; i++){
       //for every list in the old hash table, remove and hash all entries
       while(oldtable[i].size() > 0){
-        insert(oldtable[i].remove(0));
+        insert(oldtable[i].remove(0).getKey());
       }
     }
   }

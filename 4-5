@@ -1,0 +1,57 @@
+shortest-path problem: story of my life
+  given a source, find the shortest path to a destination
+  or
+  given a source, find the shortest path to any destination
+special case: unweighted graph
+  breadth-first traversal from origin to target, minimum # hops
+shortest paths for weighted graphs: Dijkstra's Algorithm
+  finds the shortest paths from vetex v to all other vertices that are reachable
+  assumptions: graph connected, edge cost non-negative
+  a vertex is finalized if we are certain we have found the shortest path to it
+    from the start
+  algorithm: repeatedly:
+    find the not-yet-finalized vertex with the lowest cost estimate
+    mark it as finalized
+    examine each not-yet-finalized neighbor of it to see if there is a shorter
+      path to the neighbor that passes through it, if there is, update the
+      shortest path estimate for the neighbor
+why can we finalize a vertex?
+  let w be the not-yet-finalized vertex with the smallest cost estimate
+  w's current estimate is the cost of the shortest path to w ******fill in*****
+notation
+  c(x,y): link cost from node x to y; infinity if not neighbors
+  D(v): current path cost estimate from source to destination v
+  p(v): predecessor node along path from source to v
+  N: set of nodes whose least cost path definitively known
+  u: starting node
+pseudocode
+  initialization:
+  N={u}
+  for all nodes v
+    if v adjacent to u
+      D(v)=c(u,v)
+      p(v)=u
+    else D(v) = inf
+
+  loop:
+  find w not in N with smallest D(w)
+  add w to N
+  update D(v) for all v adjacent to w and not in N'
+    D(v)=min(D(v),D(w)+c(w,v))
+    update p(v)
+  until all nodes are in N
+implementation issues
+  data structure: adjacency lists
+  how to find the not-yet-finalized node with minimal cost?
+  can make it more efficient by using a min-on-top heap
+complexity
+  O(V) to build heap, log(V) to reorganize heap, check a total of E edges,
+    V iterations
+  so overall complexity is O(V+E+VlogV+ElogV) = O(ElogV)
+all-pairs shortest-path problem
+  Dijkstra's algorithm can solve all shortest paths also by running multiple
+************EXAM IN 1 WEEK**********
+****BRING IN CHEAT SHEET, 1 PAGE****
+***over sorting, maybe 1 B-tree Q***
+********will not have graphs********
+***will have review in class Thur***

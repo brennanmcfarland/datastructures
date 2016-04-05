@@ -1,10 +1,10 @@
 //holds data pertaining to an item in the hash table, the key is immutable
-public class Item<T>{
-  T key;
+public class Item{
+  String key;
   int occurences;
 
   //create a new item
-  public Item(T key){
+  public Item(String key){
     this.key = key;
     occurences = 1;
   }
@@ -14,8 +14,13 @@ public class Item<T>{
     occurences++;
   }
 
+  //returns just the key, for rehashing
+  public String getKey(){
+    return key;
+  }
+
   //returns a string representing the item and it's occurences
   public String toString(){
-    return ("("+(String)key+" "+occurences+") ");
+    return ("("+key+" "+occurences+") ");
   }
 }

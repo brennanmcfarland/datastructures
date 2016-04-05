@@ -1,3 +1,145 @@
+problem 1
+
+a.  delete 4
+   need more items, check L sibling, not enough to share
+   check R sibling, grab 6 from R sibling
+   make 7 the new parent element, the minimum of the rightmost child node
+          12
+    3 7       15
+  1  3  7   12  15
+  2  6  8   14  17
+b.  delete 12
+    need more items, no L sibling
+    check R sibling, not enough to share
+    merge with R sibling
+    make 14 the new parent element, the minimum of the rightmost child node
+          12
+    3 6       14
+  1  3  7       14
+  2  6  8       15
+                17
+c.  delete 2
+    need more items, no L sibling
+    check R sibling, not enough to share
+    merge with R sibling, deleting internal node 3
+          12
+      6       14
+    1   6       14
+    2   7       15
+    4   8       17
+d.  add internal node 8
+    split internal node 6 into internal node 8
+    insert 9 at internal node 8's right child
+
+          12
+    3 6 8     15
+   1 3 6 8   12 15
+   2 4 7 9   14 17
+e.  add 10 at internal node 8's right child
+          12
+    3 6 8     15
+   1 3 6 8   12 15
+   2 4 7 9   14 17
+         10
+problem 2
+
+a. 15 14 13 12 9 8 11 10 3 6 7 1 4 5 2
+b. 15 14 13 12 9 11 8 10 3 6 7 4 5 1 2
+c. 12 10 11 4 9 8 5 2 3 6 7 1
+problem 3
+
+void insert(T item){
+  items[numitems] = item;
+  numitems++;
+  siftUp(numitems-1);
+}
+T removeMax(){
+  T toRemove = items[0];
+  items[0] = items[numitems-1];
+  siftDown(0);
+}
+void siftUp(int i){
+  T toSift = items[i];
+  int child = i;
+  int parent = (i-1)/2;
+  while(parent > 0){
+    //determine if a switch needs to be made, if not, exit the loop
+    if(toSift.compareTo(items[parent]) < 0)
+      break;
+    //make the switch if necessary, to be compared again
+    items[child] = items[parent];
+    items[parent] = toSift;
+    child = parent;
+    parent = (child-1)/2;
+  }
+  //and place the item in its appropriately sifted spot
+  items[child] = toSift;
+}
+void siftDown(int i){
+  T toSift = items[i];
+  int parent = i;
+  int child = i*2+1;
+  while(child < numItems){
+    //determine which child to compare to
+    if(child+1 < numItems && items[child].compareTo(items[child+1]) < 0)
+      child++;
+    //determine if a switch needs to be made, if not, exit the loop
+    if(toSift.compareTo(items[child]) >= 0)
+      break;
+    //make the switch if necessary, to be compared again
+    items[parent] = items[child];
+    items[child] = toSift;
+    parent = child;
+    child = 2*parent+1;
+  }
+  //and place the item in its appropriately sifted spot
+  items[parent] = toSift;
+}
+problem 4
+a.
+  0
+  1  4371
+  2
+  3  1323 6173
+  4  4344
+  5
+  6
+  7
+  8
+  9  4199 9679 1989
+b.
+  0  9679
+  1  4371
+  2  1989
+  3  1323
+  4  6173
+  5  4344
+  6
+  7
+  8
+  9  4199
+c.
+  0  9679
+  1  4371
+  2
+  3  1323
+  4  6173
+  5  4344
+  6
+  7
+  8  1989
+  9  4199
+d.
+  0
+  1  4371
+  2  9679
+  3  1323
+  4  6173
+  5  1989
+  6
+  7  4344
+  8
+  9  4199
 problem 5
 
 import java.io.FileReader;

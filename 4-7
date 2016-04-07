@@ -1,0 +1,79 @@
+*****EXAMEXAMEXAMONTUESDAY*****
+*******************************
+***see email about reviewing***
+
+minimum spanning tree
+  has the lowest total cost among all the possible spanning trees
+    ie, the lowest cost for the tree to visit all the nodes
+  may not be unique
+how to find a minimum spanning tree
+  key insight: if we divide the vertices into 2 disjoint (not overlapping)
+    subsets A and B, then the lowest cost edge joining a vertex in A to a vertex
+    in B -which we will call (a,b)- must be a part of the MST
+  proof by contradiction
+    -assume there is an MST (call it T) that doesn't include (a,b)
+    -T must include a path from a to b, so it must include another edge (a',b')
+      that connects A and B with a path a to a' to b' to b
+    -adding (a,b) to T introduces a cycle
+    -removing (a',b') gives a spanning tree with a lower cost, which contradicts
+      the original assumption
+prim's algorithm
+  begin with the following subsets:
+    A=any one of the vertices, B=all the other vertices
+  repeatedly select the lowest cost edge connecting a vertex in A to a vertex in
+    B and, add that edge to the spanning tree, and move the connecting vertex to
+    B
+  end when all the vertices are in B
+prim's algorithm - notation
+  c(x,y): link cost from node x to node y, infinity if not direct neighbors
+  C(v): current estimate of cost to connect v to A
+  p(v): predecessor node along path from source to v
+  A: set of nodes added to MST
+  u: starting node
+prim's algorithm - pseudocode
+  initialization:
+  A={u}
+  for all other nodes v
+    if v adjacent to u then
+      C(v) = c(u,v)
+      p(v)=u
+    else C(v)=infinity
+  loop:
+  find w not in A such that C(w) is a minimum
+  add w to A
+  update C(v) for all adjacent to w and not in A
+    C(v)=min(C(v),c(w,v))
+    p(v)=w
+  until all nodes are in A
+  identical to Dijkstra's except for comparison line
+intuitive comparison of Dijkstra's vs Prim's
+  both expand the search circle by 1 vertex at a time until all vertices
+    included
+  Dijkstra's includes the one with the shortest distance to the source
+    shortest-path tree
+  Prim's includes the one with the shortest distance to any of those already
+    included
+Prim's algorithm complexity
+  overall, O(V+E+VlogV+ElogV)=O((E+V)logV)=O(ElogV)
+  so O(ElogV), the same as Dijkstra's
+complexity
+  so far we've only considered algorithms
+  what about inherent complexity of problem?
+traveling salesman problem: TSP
+  shortest cyclic path one can take to visit every node without repeating
+  tour: path that begins at some starting vertex, passes through every other
+    vertex once and only once, and returns to the starting vertex (remember the
+    actual starting vertex doesn't matter)
+TSP example: sparse graph
+  only 1 tour, so solution is easy
+TSP example: dense graph
+  need to perform an exhaustive search of all possible tours, adds up quickly
+  exponential running time, (n-1)! possible tours
+  less than exponential time solution to TSP problem is unknown
+classes of problems
+  polynomial problems - problems that can be solved in polynomial time
+    eg linear, O(NlogN), quadratic, O(N^100)
+  not polynomial problems - problems that can not be solved in polynomial time
+    eg TSP, can only solve by exhaustive search
+  no one knows if P=NP
+***additional homework: watch the video, link in lecture slides***

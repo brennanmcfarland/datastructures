@@ -1,0 +1,2 @@
+java CountWords input output
+OK; Total words: 3666, Hash table size: 1024, Average length of collision lists: 3

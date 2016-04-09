@@ -2,11 +2,13 @@ import java.io.*;
 
 public class CountWords{
 
+  //all main does is print out the string returned by the method
   public static void main(String[] args){
     System.out.println(wordCount(args[0],args[1]));
   }
 
-  //
+  //reads a given input file and prints the frequency of words into the output
+  //file and to the terminal
   public static String wordCount(String input_file, String output_file){
     HashTable table;
     try{
@@ -25,8 +27,8 @@ public class CountWords{
         words = line.split(" "); //split the string into words divided by spaces
         //for each word occurence, insert it into the hash table
         for(int i=0; i<words.length; i++){
-            if(!(words[i].equals(" "))){
-              System.out.println("Inserting " + words[i]);
+            //if this "word" is just whitespace, ignore, otherwise insert
+            if(!(words[i].replaceAll("\\s+","").equals(""))){
               table.insert(words[i]);
             }
         }
@@ -35,6 +37,7 @@ public class CountWords{
       //get the string[] representation of the hash table and write it string by string
       //now we're using words to hold the string[] representation of the hash table
       //to save memory
+      //toStringArray also prints to the terminal, more efficient
       words = table.toStringArray();
       for(int i=0; i<words.length; i++){
         writer.write(words[i]);
@@ -45,6 +48,7 @@ public class CountWords{
     catch(IOException exception){
       return "Error reading/writing files.";
     }
+    //success return message
     return ("OK; Total words: " + table.size() + ", Hash table size: " + table.capacity()
      + ", Average length of collision lists: " + table.getAvgListSize());
   }

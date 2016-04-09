@@ -1,0 +1,22 @@
+a.
+  when V=N, E[min]=N-1
+  by its definition a cyclic graph must contain a path connecting distinct edges
+    that starts and ends at the same vertex; thus if any one edge in that path
+    is removed, the graph is still connected by the other edge as in a cyclic
+    graph there must be a way to and from every node, thus the graph with the
+    minimum possible number of edges to still be connected cannot be cyclic
+  OR
+  suppose the graph with the smallest possible number of edges is cyclic; if any
+    edge (a,b) is removed, the graph is still connected because the graph can be
+    traversed by starting at vertex a and traversing to b, or vice versa, so it
+    cannot be a graph with the smallest number of edges, which is a
+    contradiction to the supposition, thus a graph with the smallest possible
+    number of edges must be acyclic
+b.
+  when V=N, E[max]=N(N-1)/2
+  suppose a graph with the largest possible number of edges is incomplete, then
+    if an additional edge is added between any two formerly non-adjacent
+    vertices, which I will call (a,b) for clarity, then the graph containing
+    edge (a,b) has more edges than what we had supposed to be the graph with the
+    largest possible number of edges, which is a contradiction, thus the graph
+    with the largest possible number of edges must be complete

@@ -1,0 +1,5 @@
+java CountWords testinput testoutput
+OK; Total words: 4, Hash table size: 64, Average length of collision lists: 0
+
+NOTE: the input test file was modified several times to test different aspects
+of the program; what I am including is the version I used most often debugging

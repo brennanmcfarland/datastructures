@@ -1,0 +1,10 @@
+a.
+  Asymptotic Running Time: O(NlogN)
+b.
+  Asymptotic Running Time: O(NlogN)
+c.
+  The asymptotic running times are the same because both cases are a best case
+    scenario for quick sort, since partitioning always divides the array in
+    half, but input (a), ie, sorted input, will run faster because no
+    rearranging of elements into greater and lesser subarrays or swapping of
+    elements or arrays has to take place once the array is partitioned

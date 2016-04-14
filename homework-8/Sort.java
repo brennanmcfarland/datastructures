@@ -30,15 +30,62 @@ public class Sort{
   public static long mergeSort(int[] arr){
     //copy back and forth between other array when merging
     int[] arr2 = new int[arr.length];
-    myMergeSort(arr, arr2);
+    //for each set of subarrays of size width
+    for(int width=1; width<arr.length; width=2*width){
+      //for each pair of subarrays
+      for(int i=0; i<arr.length; i+=2*width){
+        //merge them
+        int leftbound = i;
+        int middlebound = min(i+width, arr.length);
+        int rightbound = min(i+2*width, arr.length);
+        //for each element in both subarrays
+        for(int j=i; j<rightbound; j++){
+          //if one of the arrays is filled, no more comparisons are needed
+          if(i==middlebound){
+            while(i<middlebound){
+              arr2[j] = arr[i];
+              i++;
+            }
+            break;
+          }
+          if(i+width==rightbound){
+            while(i+width<rightbound){
+              arr2[j] = arr[i];
+              i++;
+            }
+            break;
+          }
+          //otherwise, copy the lesser of the two into the temp array
+          //https://en.wikipedia.org/wiki/Merge_sort
+        }
+      }
+    }
     return 1;
   }
 
   //
-  static void myMergeSort(int[] arr){
+  static void myMergeSort(int[] arr, int[] arr2, int start, int end){
     if(arr.length == 1) //do nothing if at base case
       return;
-
+    //split the array down the middle, recurively calling mergesort on each half
+    int middle = (start+end)/2;
+    myMergeSort(arr, arr2, start, middle); //but doesn't this create additional arrays because Java passes by value?
+    myMergeSort(arr, arr2, middle+1, end);
+    //and merge
+      /*
+  merging sorted
+    3 indices, 1 for each merging array and the new one they merge in to
+    repeatedly
+      compare A[i] and B[j]
+      copy the smaller one into C[k] and increment the copied array's index
+      increment k
+    exception: if one index gets to the end, can skip comparisons and just
+      copy the rest of the other array
+  but creating a lot of arrays wastes a lot of space in memory
+  so instead do all splitting in a temporary array of the same length as the
+    original array, copying the result back into the original array
+  base case, instead of array of length 1, is if start = end
+      */
   }
 
   //run quicksort recursively on itself until the array is sorted

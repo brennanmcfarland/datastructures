@@ -1,0 +1,44 @@
+konigsberg bridge problem - beginning of graph theory
+euler's theorem
+  def: a connected graph contains a Eulerian cycle iff every vertex has an even
+    degree.  If exactly 2 vertices have odd degree, it contains a Eulerian path
+    but not an Eulerian cycle
+  every way in to a node must have a way out and vice versa for Eulerian cycle
+  visits each path once and only once
+hamiltonian paths/cycles
+  visits each vertex once and only once
+  very similar to eulerian path
+  but no algorithm that tells us whether a graph with n vertices is hamiltonian
+    or not in polynomial time, no way to tell w/o trying everything
+state space searches
+  the process of searching for a sequence of actions that take you from an
+    initial state to a goal state
+  state space: all states reachable from the initial state by taking some
+    sequence of actions (actually more general, but this is how we'll use it)
+  state-space = graph, states = nodes, actions = edges, search = graph traversal
+example: empty-space puzzle
+formulating a search problem
+  need to specify:
+    1. initial state
+    2. operators: actions to take to get from one state to another
+    3. goal test: determines if a state is a goal state
+    (4.) costs associated with applying a given operator
+  example: operators are moving empty space in any direction
+performing the state-space search
+  basic idea: if at goal state, return it, if not, apply all operators to get
+    one step away, generating more of the tree
+search strategies
+  breadth-first or depth-first
+example 2: placing 8 queens on a chess board such that none can attack any other
+  initial state: empty board
+  operators: place a queen so it does not share a row, column or diagonal with
+    any other
+  goal test: do we have 8 queens?
+  costs: not important; any solution equally good
+  depth-first better, more likely to get to goal state more quickly
+search tree - things to think about for a given problem
+  how many levels? how many children does each internal node have?
+  what search strategy is good to find a solution?
+  how to prune the tree?
+****review on Thursday****
+***homework due tonight***

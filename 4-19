@@ -1,0 +1,42 @@
+***today's material won't be on exam, will review Thursday***
+data as language
+symbolic representation
+  machine number: a number that can be exactly represented by a computer
+    (sidenote: exact representation of fractions?  could be fun project)
+  sequence base - can be encoded with a sequence of symbols
+languages
+  behavior of sequence base - grammar is the rules just like english language
+language classification
+  behavior of dynamical systems can be classified and characterized according to
+    properties of strings of discrete systems
+chomsky hiearchy
+  regular, finite automaton
+  context free, pushdown automaton
+  context sensitive, linear-bounded automaton
+  unrestricted, Turing automaton
+languages - rules
+  regular languages allow concatenation, alteration, etc
+  context free: variables + terminals, described w production rules
+automata: states
+  set of states
+  an alphabet - finite set of symbols
+  start state
+  accepting (end) states
+probabilistic machines
+  finite state automata can be modelled with graph
+  regular language of graph on lecture slide: R=(r*+s)(t+uv)*
+epsilon machines
+  minimal machine that replicates the observed sequence of symbols
+  can analyze by finding monograms, bigrams, trigrams, etc to make prefix tree
+prefix trees
+  first level - monogram frequencies, second level - bigram frequencies, etc
+pumping lemma
+  beyond a certain length (pumping length), a string of symbols has to repeat
+    itself (when it runs out of new edges to traverse it has to revisit ones)
+finite state inference
+  myhill-nerode theorem: transitions from graph nodes don't change regardless
+    of path of arrival, forward branching probabilities remain the same
+subtree similarity - looking for similar subtrees
+dedecoration: removing transient and terminal nodes
+occam's razor
+  different graphs can be constructed using morphs of different depths

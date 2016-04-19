@@ -1,3 +1,4 @@
+
 1. As in quick sort, maintain indices i and j starting i just before the start
     of the array and j just after the end
 2. increment i until it is pointing at a blue element

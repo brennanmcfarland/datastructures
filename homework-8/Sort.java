@@ -5,6 +5,8 @@ public class Sort{
 
   //run the heap sort sorting algorithm on a given array
   public static long heapSort(int[] arr){
+    //record the time to keep track of algorithm running time
+    long startTime = System.nanoTime();
     //turn the array into a heap
     items = arr;
     numItems = arr.length;
@@ -14,78 +16,90 @@ public class Sort{
     while(numItems > 1){
       items[numItems-1] = removeMax();
     }
-    return 1;
+    //and return the time it took to sort
+    return System.nanoTime()-startTime;
   }
 
   //run the quick sort sorting algorithm on a given array
   public static long quickSort(int[] arr){
+    //record the time to keep track of algorithm running time
+    long startTime = System.nanoTime();
+    //run the quick sort algorithm recursively on itself
     myQuickSort(arr, 0, arr.length-1);
-    for(int i=0; i<arr.length; i++){
-      System.out.println(arr[i]);
-    }
-    return 1;
+    //and return the time it took to sort
+    return System.nanoTime()-startTime;
   }
 
   //run the merge sort sorting algorithm on a given array
   public static long mergeSort(int[] arr){
-    //copy back and forth between other array when merging
+    //record the time to keep track of algorithm running time
+    long startTime = System.nanoTime();
+    //create the temporary array
     int[] arr2 = new int[arr.length];
-    //for each set of subarrays of size width
-    for(int width=1; width<arr.length; width=2*width){
-      //for each pair of subarrays
-      for(int i=0; i<arr.length; i+=2*width){
-        //merge them
-        int leftbound = i;
-        int middlebound = min(i+width, arr.length);
-        int rightbound = min(i+2*width, arr.length);
-        //for each element in both subarrays
-        for(int j=i; j<rightbound; j++){
-          //if one of the arrays is filled, no more comparisons are needed
-          if(i==middlebound){
-            while(i<middlebound){
-              arr2[j] = arr[i];
-              i++;
-            }
-            break;
-          }
-          if(i+width==rightbound){
-            while(i+width<rightbound){
-              arr2[j] = arr[i];
-              i++;
-            }
-            break;
-          }
-          //otherwise, copy the lesser of the two into the temp array
-          //https://en.wikipedia.org/wiki/Merge_sort
-        }
-      }
-    }
-    return 1;
+    //sort the array with myMergeSort()
+    arr = myMergeSort(arr, arr2, 1);
+    //and return the time it took to sort
+    return System.nanoTime()-startTime;
   }
 
-  //
-  static void myMergeSort(int[] arr, int[] arr2, int start, int end){
-    if(arr.length == 1) //do nothing if at base case
-      return;
-    //split the array down the middle, recurively calling mergesort on each half
-    int middle = (start+end)/2;
-    myMergeSort(arr, arr2, start, middle); //but doesn't this create additional arrays because Java passes by value?
-    myMergeSort(arr, arr2, middle+1, end);
-    //and merge
-      /*
-  merging sorted
-    3 indices, 1 for each merging array and the new one they merge in to
-    repeatedly
-      compare A[i] and B[j]
-      copy the smaller one into C[k] and increment the copied array's index
-      increment k
-    exception: if one index gets to the end, can skip comparisons and just
-      copy the rest of the other array
-  but creating a lot of arrays wastes a lot of space in memory
-  so instead do all splitting in a temporary array of the same length as the
-    original array, copying the result back into the original array
-  base case, instead of array of length 1, is if start = end
-      */
+  //mergesort recursively calls itself in the return statement, but switches
+  //the temporary and original arrays each time in order to save from copying
+  private static int[] myMergeSort(int[] arr, int[] arr2, int width){
+      //for each pair of subarrays of width width
+      for(int leftbound=0; leftbound<arr.length; leftbound+=2*width){
+        /*leftbound is the beginning of the left subarray
+        **middlebound is the beginning of the right subarray
+        **rightbound is the last position of the right subarray +1
+        **i is the index for the left array
+        **j is the index for the right array
+        **k is the index for the temporary array*/
+        int i = leftbound;
+        int middlebound = Math.min(leftbound+width, arr.length);
+        int j = middlebound;
+        int rightbound = Math.min(i+2*width, arr.length);
+        //for each and every element in both subarrays
+        subarraysort: for(int k=leftbound; k<rightbound; k++){
+          //if one of the arrays is exhausted, no more comparisons are needed,
+          //just copy the remaining elements of the other one to the temp array
+          if(i==middlebound){
+            while(j<rightbound){
+              arr2[k] = arr[j];
+              //maintain indices for the original and temp array
+              k++;
+              j++;
+            }
+            break subarraysort; //break out of the loop, done evaluating this
+                                //set of subarrays
+          }
+          if(j==rightbound){
+            while(i<middlebound){
+              arr2[k] = arr[i];
+              //maintain indices for the original and temp array
+              k++;
+              i++;
+            }
+            break subarraysort; //break out of the loop, done evaluating this
+                                //set of subarrays
+          }
+          //otherwise, copy the lesser of the two elements into the temp array
+          if(arr[i] < arr[j]){
+            arr2[k] = arr[i];
+            i++;
+          }
+          else{
+            arr2[k] = arr[j];
+            j++;
+          }
+        }
+      }
+      //if width*2 is >= to the array length, ie, if the next width is going to
+      //be as large as or larger than the array length, it's sorted, return the
+      //now sorted temp array
+      if(width*2 >= arr2.length)
+        return arr2;
+      //otherwise, run the algorithm again on subarrays twice as large,
+      //reversing the roles of the temp and original array
+      return myMergeSort(arr2, arr, width*2);
   }
 
   //run quicksort recursively on itself until the array is sorted
@@ -102,7 +116,7 @@ public class Sort{
   //partition the array in quick sort
   static int partition(int[] arr, int first, int last){
     //set the pivot and the indices
-    int pivot = (first+last)/2;
+    int pivot = arr[(first+last)/2];
     int i = first-1; //left index
     int j = last+1; //right index
     int temp; //for swapping out of order values
@@ -111,11 +125,14 @@ public class Sort{
     //swap these values if found, and repeat until there are no more values to
     //swap, ie, the partition is sorted
     while(true){
+      //System.out.println("pivot: " + pivot);
       do{
         i++;
+        //System.out.println("i: " + i);
       }while(arr[i] < pivot);
       do{
         j--;
+        //System.out.println("j: " + j);
       }while(arr[j] > pivot);
       if(i < j){
         temp = arr[i];
@@ -134,7 +151,7 @@ public class Sort{
       siftDown(i);
   }
 
-  //used to remove the max value from the heap in heap sort
+  //used to get and remove the max value from the heap in heap sort
   static int removeMax(){
     int toRemove = items[0];
     items[0] = items[numItems-1];

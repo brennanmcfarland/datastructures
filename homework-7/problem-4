@@ -1,3 +1,4 @@
+
 the blocks are read into the input buffers in sequential groups of three, the
   ordering within those groups determined by which block has lower values, which
   in this case is also sequential order:

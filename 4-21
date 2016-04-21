@@ -1,0 +1,44 @@
+FINAL - INFO
+  best way to review is go over assignments you lost points on
+  right here (DeGrace 312)
+  will be allowed 1 sheet as usual
+  designed to be about 2x as long as a regular exam
+FINAL - REVIEW
+  1. ADT: abstract model of how to interact with a particular data structure
+    concretized by an interface
+    not the data structure itself, but a conceptualization of it
+  2. List: collection of items, often ordered in some particular way
+    -ArrayList - random access
+    -LinkedList - dynamically resizeable
+    -UML:
+      storage
+      int size
+
+      void add(object)
+      object remove()
+      int size()
+      object peek/get(int)
+      Iterator(Comparator)
+        boolean hasNext()
+        object next()
+  3. "Special Lists"
+    -Stack - LIFO
+      -postfix notation
+    -Queue - FIFO
+  4. Evaluating Complexity
+    -time - F(N), online (continuous stream of data)
+      -steps
+    -space
+  5. O notation: behavior at the limit at finity
+    -growth rate function
+    -worst case
+    -types of growth: polynomial, logarithmic, factorial(exponential)
+    -determining from code+loops (make sure you know logarithmic identities)
+  6. Trees/Recursion
+    1. binary trees: each node has up to 2 children
+      leaf: no children, root: beginning of tree, no parent in that tree
+      complete: all leaves @ same depth AND all nodes but leaves have 2 children
+      full: nodes filled in L-R with no gaps
+      depth, height, balance
+    (2. B-trees, don't forget B-trees!)
+  and so on ... 

@@ -59,16 +59,7 @@ public class Reporting1{
     }
   }
 
-  //calculates the median of 3 elements, simply compares each case
-  private static long median(long[] arr){
-    if(arr[0] > arr[1]){
-      if(arr[0] < arr[2])
-        return arr[0];
-      else if(arr[1] > arr[2])
-        return arr[1];
-    }
-    return arr[2];
-  }
+
 
   public static void main(String[] args){
     System.out.println("Please wait while the data is being processed...");
@@ -80,117 +71,110 @@ public class Reporting1{
       Arrays data = new Arrays();
       long[] trials = new long[3]; //holds each of the 3 trials of each run
 
+      writer.write("All units in nanoseconds (ns):\n");
       //HEAPSORT: run trials on heapsort
       writer.write("HEAPSORT"); writer.newLine();
-      writer.write("  array size:     1000      10000      100000      1000000");
-      writer.newLine();
+      writer.write("  array size:     1000      10000      100000      1000000\n");
 
       //for sorted input,
       writer.write("      sorted:     ");
       data.fillSorted();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //for reverse sorted input
       writer.write("     reverse:     ");
       data.fillReverse();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //for random input
       writer.write("      random:     ");
       data.fillRandom();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //QUICKSORT: run trials on quicksort
       writer.write("QUICKSORT"); writer.newLine();
-      writer.write("  array size:     1000      10000      100000      1000000");
-      writer.newLine();
+      writer.write("  array size:     1000      10000      100000      1000000\n");
 
       //for sorted input,
       writer.write("      sorted:     ");
       data.fillSorted();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //for reverse sorted input
       writer.write("     reverse:     ");
       data.fillReverse();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //for random input
       writer.write("      random:     ");
       data.fillRandom();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //MERGESORT: run trials on mergesort
       writer.write("MERGESORT"); writer.newLine();
@@ -202,51 +186,48 @@ public class Reporting1{
       data.fillSorted();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //for reverse sorted input
       writer.write("     reverse:     ");
       data.fillReverse();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       //for random input
       writer.write("      random:     ");
       data.fillRandom();
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.XS);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.S);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.L);
-      writer.write(median(trials)+"     ");
+      writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
         trials[i] = Sort.mergeSort(data.XS);
-      writer.write(median(trials)+"     ");
-      writer.newLine();
+      writer.write(Sort.median(trials)+"     \n");
 
       writer.close();
     } //gives an error message if file output went wrong

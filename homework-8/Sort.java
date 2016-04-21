@@ -41,6 +41,17 @@ public class Sort{
     //and return the time it took to sort
     return System.nanoTime()-startTime;
   }
+  
+  //calculates the median of 3 runtimes, simply compares each case
+  public static long median(long[] arr){
+    if(arr[0] > arr[1]){
+      if(arr[0] < arr[2])
+        return arr[0];
+      else if(arr[1] > arr[2])
+        return arr[1];
+    }
+    return arr[2];
+  }
 
   //mergesort recursively calls itself in the return statement, but switches
   //the temporary and original arrays each time in order to save from copying

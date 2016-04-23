@@ -41,7 +41,7 @@ public class Sort{
     //and return the time it took to sort
     return System.nanoTime()-startTime;
   }
-  
+
   //calculates the median of 3 runtimes, simply compares each case
   public static long median(long[] arr){
     if(arr[0] > arr[1]){
@@ -93,6 +93,7 @@ public class Sort{
                                 //set of subarrays
           }
           //otherwise, copy the lesser of the two elements into the temp array
+          //it says it's putting them in the right spot, but it's not
           if(arr[i] < arr[j]){
             arr2[k] = arr[i];
             i++;
@@ -103,10 +104,9 @@ public class Sort{
           }
         }
       }
-      //if width*2 is >= to the array length, ie, if the next width is going to
-      //be as large as or larger than the array length, it's sorted, return the
-      //now sorted temp array
-      if(width*2 >= arr2.length)
+      //if the width of the subarray is greater than or equal to the array
+      //length, it's sorted
+      if(width >= arr2.length)
         return arr2;
       //otherwise, run the algorithm again on subarrays twice as large,
       //reversing the roles of the temp and original array
@@ -136,14 +136,11 @@ public class Sort{
     //swap these values if found, and repeat until there are no more values to
     //swap, ie, the partition is sorted
     while(true){
-      //System.out.println("pivot: " + pivot);
       do{
         i++;
-        //System.out.println("i: " + i);
       }while(arr[i] < pivot);
       do{
         j--;
-        //System.out.println("j: " + j);
       }while(arr[j] > pivot);
       if(i < j){
         temp = arr[i];

@@ -64,6 +64,12 @@ public class Reporting1{
   public static void main(String[] args){
     System.out.println("Please wait while the data is being processed...");
 
+    /*NOTE: the number of lines could only be significantly shortened by passing
+      the sorting method and string arguments to another method, which would
+      not streamline the performance of the code in any way and would make it
+      look more complicated to the reader, thus I have left it straightforward
+      like so in order to make it as easy to read as possible
+    */
     try{
       //output will be formatted and written to a text file
       BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
@@ -110,19 +116,26 @@ public class Reporting1{
 
       //for random input
       writer.write("      random:     ");
-      data.fillRandom();
-      for(int i=0; i<trials.length; i++)
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.heapSort(data.XS);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.heapSort(data.S);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.heapSort(data.L);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.heapSort(data.XS);
-      writer.write(Sort.median(trials)+"     \n");
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
+        trials[i] = Sort.heapSort(data.XL);
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     \n");
 
       //QUICKSORT: run trials on quicksort
       writer.write("QUICKSORT"); writer.newLine();
@@ -162,19 +175,26 @@ public class Reporting1{
 
       //for random input
       writer.write("      random:     ");
-      data.fillRandom();
-      for(int i=0; i<trials.length; i++)
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.quickSort(data.XS);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.quickSort(data.S);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.quickSort(data.L);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.quickSort(data.XS);
-      writer.write(Sort.median(trials)+"     \n");
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
+        trials[i] = Sort.quickSort(data.XL);
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     \n");
 
       //MERGESORT: run trials on mergesort
       writer.write("MERGESORT"); writer.newLine();
@@ -215,19 +235,26 @@ public class Reporting1{
 
       //for random input
       writer.write("      random:     ");
-      data.fillRandom();
-      for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.mergeSort(data.XS);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
+        trials[i] = Sort.heapSort(data.XS);
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.mergeSort(data.S);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
         trials[i] = Sort.mergeSort(data.L);
-      writer.write(Sort.median(trials)+"     ");
-      for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.mergeSort(data.XS);
-      writer.write(Sort.median(trials)+"     \n");
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     ");
+      for(int i=0; i<trials.length; i++){
+        data.fillRandom();
+        trials[i] = Sort.mergeSort(data.XL);
+      }
+      writer.write(((trials[0]+trials[1]+trials[2])/3)+"     \n");
 
       writer.close();
     } //gives an error message if file output went wrong

@@ -42,3 +42,5 @@ FINAL - REVIEW
       depth, height, balance
     (2. B-trees, don't forget B-trees!)
   and so on ... 
+(note to self: on exam be sure to distinguish between i and arr[i],
+especially in comparisons, otherwise may get points off)

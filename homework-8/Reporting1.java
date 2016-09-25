@@ -95,7 +95,7 @@ public class Reporting1{
         trials[i] = Sort.heapSort(data.L);
       writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.heapSort(data.XS);
+        trials[i] = Sort.heapSort(data.XL);
       writer.write(Sort.median(trials)+"     \n");
 
       //for reverse sorted input
@@ -111,7 +111,7 @@ public class Reporting1{
         trials[i] = Sort.heapSort(data.L);
       writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.heapSort(data.XS);
+        trials[i] = Sort.heapSort(data.XL);
       writer.write(Sort.median(trials)+"     \n");
 
       //for random input
@@ -154,7 +154,7 @@ public class Reporting1{
         trials[i] = Sort.quickSort(data.L);
       writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.quickSort(data.XS);
+        trials[i] = Sort.quickSort(data.XL);
       writer.write(Sort.median(trials)+"     \n");
 
       //for reverse sorted input
@@ -170,7 +170,7 @@ public class Reporting1{
         trials[i] = Sort.quickSort(data.L);
       writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.quickSort(data.XS);
+        trials[i] = Sort.quickSort(data.XL);
       writer.write(Sort.median(trials)+"     \n");
 
       //for random input
@@ -214,7 +214,7 @@ public class Reporting1{
         trials[i] = Sort.mergeSort(data.L);
       writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.mergeSort(data.XS);
+        trials[i] = Sort.mergeSort(data.XL);
       writer.write(Sort.median(trials)+"     \n");
 
       //for reverse sorted input
@@ -230,7 +230,7 @@ public class Reporting1{
         trials[i] = Sort.mergeSort(data.L);
       writer.write(Sort.median(trials)+"     ");
       for(int i=0; i<trials.length; i++)
-        trials[i] = Sort.mergeSort(data.XS);
+        trials[i] = Sort.mergeSort(data.XL);
       writer.write(Sort.median(trials)+"     \n");
 
       //for random input
